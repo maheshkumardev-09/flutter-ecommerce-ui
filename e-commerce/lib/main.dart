@@ -1,4 +1,4 @@
-import 'package:e_commerce_aap/item_screens/bottombar.dart';
+import 'package:e_commerce_aap/onbored_screens/onbored_screen1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           debugShowCheckedModeBanner: false,
-          home: Bottombar(),
+          home: OnboredScreen1(),
         );
       },
     );
