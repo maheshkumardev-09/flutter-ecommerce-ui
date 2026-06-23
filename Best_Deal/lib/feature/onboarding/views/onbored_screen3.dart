@@ -1,4 +1,4 @@
-import 'package:e_commerce_aap/entery_screens/register_screen.dart';
+import 'package:e_commerce_aap/feature/auth/views/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -67,7 +67,7 @@ class _OnboredScreen3State extends State<OnboredScreen3> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterScreen(),
+                            builder: (context) => SigmUpScreen(),
                           ),
                         );
                       },

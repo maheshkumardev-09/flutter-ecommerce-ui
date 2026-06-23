@@ -1,7 +1,6 @@
+import 'package:e_commerce_aap/feature/home/home_screen.dart';
+import 'package:e_commerce_aap/feature/profile/profile_screen.dart';
 import 'package:e_commerce_aap/item_screens/browase_screen.dart';
-import 'package:e_commerce_aap/item_screens/cart_screen/cart_screen.dart';
-import 'package:e_commerce_aap/item_screens/home_screen/home_screen.dart';
-import 'package:e_commerce_aap/item_screens/profile_screen/profile_screen.dart';
 import 'package:e_commerce_aap/item_screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class _BottombarState extends State<Bottombar> {
     HomeScreen(),
     BrowaseScreen(),
     WishlistScreen(),
-    CartScreen(),
+    // CartScreen(),
     ProfileScreen(),
   ];
   int _navigationindex = 0;

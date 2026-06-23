@@ -1,19 +1,30 @@
-import 'package:e_commerce_aap/entery_screens/login_screen.dart';
-import 'package:e_commerce_aap/item_screens/bottombar.dart';
+import 'package:e_commerce_aap/feature/auth/views/forgot_password_screen.dart';
+import 'package:e_commerce_aap/feature/auth/views/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  bool vispassword = true;
-  bool vispassword2 = true;
+class _LoginScreenState extends State<LoginScreen> {
+  void _showFrgetshet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return FractionallySizedBox(
+          heightFactor: 0.5.h,
+          child: ForgotPssswordScreen(),
+        );
+      },
+    );
+  }
 
+  bool vispassword = true;
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 12.h);
@@ -22,7 +33,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     var sizedBox3 = SizedBox(height: 15.h);
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
-    TextEditingController confrompassword = TextEditingController();
 
     return Scaffold(
       body: Padding(
@@ -33,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               sizedBox2,
               Text(
-                'Create your new\naccount.',
+                'Login to your \naccount.',
                 style: TextStyle(
                   fontSize: 30.sp,
                   fontWeight: FontWeight.bold,
@@ -57,6 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
+
               sizedBox,
               _title('Password'),
               sizedBox2,
@@ -88,36 +99,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return null;
                 },
               ),
-              sizedBox,
-              _title('Confirm password'),
-              sizedBox2,
-              TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                controller: confrompassword,
-                obscureText: vispassword2,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        vispassword2 = !vispassword2;
-                      });
-                    },
-                    icon: Icon(
-                      vispassword2 ? Icons.visibility : Icons.visibility_off,
-                      color: const Color.fromARGB(255, 14, 22, 72),
-                    ),
+              sizedBox3,
+              TextButton(
+                onPressed: () {
+                  _showFrgetshet(context);
+                },
+                child: Text(
+                  'Forget password?',
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'please enter password';
-                  }
-                  if (value != password.text) {
-                    return 'password is not match';
-                  }
-                  return null;
-                },
               ),
               sizedBox3,
               SizedBox(
@@ -125,18 +119,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => Bottombar()),
-                      );
-                    }
+                    if (formKey.currentState!.validate()) {}
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 14, 22, 72),
                   ),
                   child: Text(
-                    'Register',
+                    'Login',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -201,7 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CircleAvatar(
-                        radius: 20,
+                        radius: 23,
                         backgroundImage: AssetImage('images/facebook.png'),
                       ),
                       SizedBox(width: 15.w),
@@ -222,7 +211,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already have an account?",
+                    "Don't have an accout?",
                     style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
@@ -233,11 +222,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(builder: (context) => SigmUpScreen()),
                       );
                     },
                     child: Text(
-                      'Login',
+                      'Register',
                       style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w500,

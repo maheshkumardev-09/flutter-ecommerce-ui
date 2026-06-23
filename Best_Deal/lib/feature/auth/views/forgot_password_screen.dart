@@ -1,10 +1,10 @@
-import 'package:e_commerce_aap/entery_screens/otp_screen.dart';
+import 'package:e_commerce_aap/feature/auth/views/otp_verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ForgetPssswordScreen extends StatelessWidget {
-  const ForgetPssswordScreen({super.key});
+class ForgotPssswordScreen extends StatelessWidget {
+  const ForgotPssswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

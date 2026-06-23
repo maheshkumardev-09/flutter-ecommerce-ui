@@ -1,5 +1,5 @@
 import 'package:e_commerce_aap/getx/order_controller.dart';
-import 'package:e_commerce_aap/item_screens/cart_screen/select_address_screen.dart';
+import 'select_address_screen.dart';
 import 'package:e_commerce_aap/item_screens/paymentm_methd_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

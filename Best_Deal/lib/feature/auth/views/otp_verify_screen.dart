@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:e_commerce_aap/entery_screens/enterycompleted_screen.dart';
+import 'package:e_commerce_aap/feature/auth/views/enterycompleted.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,7 +19,7 @@ class _OtpScreenState extends State<OtpScreen> {
       builder: (context) {
         return FractionallySizedBox(
           heightFactor: 0.6.h,
-          child: EnterycompletedScreen(),
+          child: Enterycompleted(),
         );
       },
     );

@@ -1,4 +1,4 @@
-import 'package:e_commerce_aap/item_screens/home_screen/notification_screen.dart';
+import 'package:e_commerce_aap/feature/home/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,30 +1,19 @@
-import 'package:e_commerce_aap/entery_screens/forgetpsssword_screen.dart';
-import 'package:e_commerce_aap/entery_screens/register_screen.dart';
+import 'package:e_commerce_aap/feature/auth/views/login_screen.dart';
+import "package:e_commerce_aap/item_screens/bottombar.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SigmUpScreen extends StatefulWidget {
+  const SigmUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SigmUpScreen> createState() => _SigmUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  void _showFrgetshet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) {
-        return FractionallySizedBox(
-          heightFactor: 0.5.h,
-          child: ForgetPssswordScreen(),
-        );
-      },
-    );
-  }
-
+class _SigmUpScreenState extends State<SigmUpScreen> {
   bool vispassword = true;
+  bool vispassword2 = true;
+
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 12.h);
@@ -33,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var sizedBox3 = SizedBox(height: 15.h);
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
+    TextEditingController confrompassword = TextEditingController();
 
     return Scaffold(
       body: Padding(
@@ -43,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               sizedBox2,
               Text(
-                'Login to your \naccount.',
+                'Create your new\naccount.',
                 style: TextStyle(
                   fontSize: 30.sp,
                   fontWeight: FontWeight.bold,
@@ -67,7 +57,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-
               sizedBox,
               _title('Password'),
               sizedBox2,
@@ -99,19 +88,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
               ),
-              sizedBox3,
-              TextButton(
-                onPressed: () {
-                  _showFrgetshet(context);
-                },
-                child: Text(
-                  'Forget password?',
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+              sizedBox,
+              _title('Confirm password'),
+              sizedBox2,
+              TextFormField(
+                keyboardType: TextInputType.visiblePassword,
+                controller: confrompassword,
+                obscureText: vispassword2,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        vispassword2 = !vispassword2;
+                      });
+                    },
+                    icon: Icon(
+                      vispassword2 ? Icons.visibility : Icons.visibility_off,
+                      color: const Color.fromARGB(255, 14, 22, 72),
+                    ),
                   ),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please enter password';
+                  }
+                  if (value != password.text) {
+                    return 'password is not match';
+                  }
+                  return null;
+                },
               ),
               sizedBox3,
               SizedBox(
@@ -119,13 +125,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {}
+                    if (formKey.currentState!.validate()) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Bottombar()),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 14, 22, 72),
                   ),
                   child: Text(
-                    'Login',
+                    'Register',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -190,7 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       CircleAvatar(
-                        radius: 23,
+                        radius: 20,
                         backgroundImage: AssetImage('images/facebook.png'),
                       ),
                       SizedBox(width: 15.w),
@@ -211,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an accout?",
+                    "Already have an account?",
                     style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
@@ -222,13 +233,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => RegisterScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                       );
                     },
                     child: Text(
-                      'Register',
+                      'Login',
                       style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
